@@ -1,0 +1,31 @@
+zuul:
+  routes:
+    book-serv:
+      path: /g/**
+      service-id: book-micro
+      
+server:
+  port: 8080
+  
+management:
+  security:
+    enabled: false
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+spring:
+  application:
+    name: gateway
+    
+hystrix:
+  command:
+    default:
+      circuitBreaker:
+        sleepWindowInMilliseconds: 30000
+        requestVolumeThreshold: 3
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+    
